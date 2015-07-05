@@ -35668,9 +35668,8 @@ function AppConfig($urlRouterProvider, $stateProvider) {
     });
     $urlRouterProvider.otherwise('login');
 }
-AppConfig.$inject = ["$urlRouterProvider", "$stateProvider"];
 
-app.controller("AppCtrl", ["$rootScope", "$scope", "localStorageService", "$state", function ($rootScope, $scope, localStorageService, $state) {
+app.controller("AppCtrl", function ($rootScope, $scope, localStorageService, $state) {
     $scope.logout = function () {
         $rootScope.loggedIn = false;
         $rootScope.user = null;
@@ -35687,9 +35686,9 @@ app.controller("AppCtrl", ["$rootScope", "$scope", "localStorageService", "$stat
                 $scope.logout();
         }
     });
-}]);
+});
 
-app.controller("MessageCtrl", ["$rootScope", "$scope", "$firebaseArray", function ($rootScope, $scope, $firebaseArray) {
+app.controller("MessageCtrl", function ($rootScope, $scope, $firebaseArray) {
     var ref = new Firebase("https://glowing-heat-6370.firebaseio.com/");
     $scope.messages = $firebaseArray(ref);
     $scope.addMessage = function () {
@@ -35708,7 +35707,7 @@ app.controller("MessageCtrl", ["$rootScope", "$scope", "$firebaseArray", functio
             class: $scope.class,
         });
     };
-}]);
+});
 
 app.filter("reverse", function () {
     return function (items) {
@@ -35716,7 +35715,7 @@ app.filter("reverse", function () {
     };
 });
 
-app.controller("LoginCtrl", ["$rootScope", "$scope", "$firebaseArray", "localStorageService", "$state", function ($rootScope, $scope, $firebaseArray, localStorageService, $state) {
+app.controller("LoginCtrl", function ($rootScope, $scope, $firebaseArray, localStorageService, $state) {
     var ref = new Firebase("https://mindboardusers.firebaseio.com/");
     $scope.users = $firebaseArray(ref);
     $scope.login = function () {
@@ -35733,9 +35732,9 @@ app.controller("LoginCtrl", ["$rootScope", "$scope", "$firebaseArray", "localSto
         }
 
     };
-}]);
+});
 
-app.controller("UsersCtrl", ["$scope", "$firebaseArray", "localStorageService", function ($scope, $firebaseArray, localStorageService) {
+app.controller("UsersCtrl", function ($scope, $firebaseArray, localStorageService) {
     var ref = new Firebase("https://mindboardusers.firebaseio.com/");
     $scope.users = $firebaseArray(ref);
     $scope.addUser = function () {
@@ -35745,4 +35744,4 @@ app.controller("UsersCtrl", ["$scope", "$firebaseArray", "localStorageService", 
             class: $scope.class,
         });
     };
-}]);
+});

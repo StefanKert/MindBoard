@@ -890,6 +890,9 @@ footer {
   #banner #logo {
     margin-right: 15px;
   }
+  #banner #text {
+    margin-right: 10px;
+  }
 
   section {
     border: 1px solid #e5e5e5;
