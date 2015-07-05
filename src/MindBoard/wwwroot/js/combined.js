@@ -30834,7 +30834,7 @@ if ( typeof Object.getPrototypeOf !== "function" ) {
     }
 })();
 
-var app = angular.module("MindBoard", ["firebase"]);
+var app = angular.module("MindBoard", ["firebase", "LocalStorageModule"]);
 
 
 app.controller("SampleCtrl", ["$scope", "$firebaseArray", function ($scope, $firebaseArray) {
@@ -30854,3 +30854,15 @@ app.filter("reverse", function () {
         return items.slice().reverse(); // Create a copy of the array and reverse the order of the items
     };
 });
+
+app.controller("LoginCtrl", ["$scope", "$firebaseArray", "localStorageService", function($scope, $firebaseArray, localStorageService) {
+    var ref = new Firebase("https://mindboardusers.firebaseio.com/");
+    $scope.messages = $firebaseArray(ref);
+    $scope.login = function () {
+        console.log("test");
+        $scope.messages.$add({
+            text: $scope.newMessageText
+        });
+        console.log("test");
+    };
+}]);
