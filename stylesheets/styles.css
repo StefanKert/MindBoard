@@ -791,7 +791,7 @@ header p {
   background: url(../images/octocat-logo.png);
 }
 
-section {
+.messageList {
   width: 590px;
   padding: 30px 30px 50px 30px;
   margin: 20px 0;
@@ -889,6 +889,9 @@ footer {
   }
   #banner #logo {
     margin-right: 15px;
+  }
+  #banner #text {
+    margin-right: 10px;
   }
 
   section {
