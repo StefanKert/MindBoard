@@ -26,55 +26,62 @@
         }
         .input-form {
             position: fixed;
-            right: 5px;
+            right: 50px;
             bottom: 5px;
+        }
+        .register-form {
+            position: fixed;
+            right: 5px;
+            bottom: 50px;
+        }
+        .login-box {
+            margin-top: 200px;
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 40px 20px 0 20px;
+        }
+        .logout-button{
+            position: fixed;
+            right: 5px;
+            top: 5px;
+            z-index: 999999;
+        }
+        .message-header {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 8px;
+            min-height: 20px;
+            line-height: 20px;
+        }
+        .message-content {
+            font-size: 12px;
+            line-height: 16px;
+            margin: 0px;
         }
     </style>
 </head>
-<body ng-app="MindBoard"  ng-controller="SampleCtrl">
-
+<body ng-app="MindBoard"  ng-controller="AppCtrl">
+    <a ng-if="$root.loggedIn" class="logout-button button tiny secondary" ng-click="logout()">Logout</a>
     <header>
-        <h1>Mindboard</h1>
-        <p></p>
+        <h1>Mindboard</h1> 
+        <p ng-if="$root.loggedIn">Hi {{$root.user.firstname}} {{$root.user.lastname}}! </p>
     </header>
 
     <div id="banner">
+        
         <span id="logo"></span>
     </div>
 
 <div class="wrapper">
-    <section class="messageList">
-        <div>
-            <div> <!--style="width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;"-->
-                <div class="messageBox" ng-repeat="message in messages | reverse">
-                    {{message.text}}
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="input-form">
-        <div class="row">
-            <div class="large-12 columns">
-                <form ng-submit="addMessage()">
-                    <label>
-                        Neue Nachricht
-                        <input type="text" ng-model="newMessageText" placeholder="Nachricht...."/>
-                    </label>
-                    <button type="submit" class="button info">Abschicken</button>
-                </form>
-            </div>
-        </div>
-    </section>
+    <div ui-view></div>
     <footer>
-        <p>Project maintained by <a href="https://github.com/StefanKert">StefanKert</a>
-        </p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small>
+        <p><small>&copy; 2015 by <a href="https://twitter.com/StefanKert">Stefan Kert</a></small>
         </p>
     </footer>
 </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular.min.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/linq.js/2.2.0.2/linq.min.js"></script>
     <script src="js/combined.js"></script>
     <script src="javascripts/main.js"></script>
 </body>

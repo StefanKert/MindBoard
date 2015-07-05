@@ -28,8 +28,10 @@
             all: {
                 src: [
                     'vendor/angular/*.js',
+                    'vendor/ui-router/*.js',
                     'vendor/firebase/*.js',
                     'vendor/angularfire/*.js',
+                    'vendor/angular-local-storage/*.js',
                     //'vendor/**/*.js',
                     '!vendor/modernizr/*.js',
                     '!vendor/modernizr/**/*.*',
