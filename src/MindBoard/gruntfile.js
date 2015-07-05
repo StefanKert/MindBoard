@@ -26,7 +26,18 @@
         },
         concat: {
             all: {
-                src: ['vendor/angular/*.js', 'vendor/firebase/firebase.js', 'vendor/angular-firebase/ng-firebase.js', 'vendor/jquery/js/.js', 'vendor/**/*.js', '!vendor/angular-firebase/demo/*.*', 'app/app.module.js', 'app/**/*.js', '!vendor/**/*.min.js'],
+                src: [
+                    'vendor/angular/*.js',
+                    'vendor/firebase/*.js',
+                    'vendor/angularfire/*.js',
+                    //'vendor/**/*.js',
+                    '!vendor/modernizr/*.js',
+                    '!vendor/modernizr/**/*.*',
+                    '!vendor/angular-firebase/demo/*.*',
+                    'app/app.module.js',
+                    'app/**/*.js',
+                    '!vendor/**/*.min.js'
+                ],
                 dest: 'wwwroot/js/combined.js'
             }
         },
@@ -85,8 +96,8 @@
     grunt.registerTask("default", ["bower:install"]);
     grunt.registerTask("all", ['clean', 'bower', 'concat', 'copy', 'jshint']);
 
-    grunt.registerTask("updateJs", ['clean', 'bower', 'jshint', 'concat', 'ngAnnotate', 'uglify'])
-    grunt.registerTask("updateHtms", ['htmlmin'])
+    grunt.registerTask("updateJs", ['clean', 'bower', 'jshint', 'concat', 'ngAnnotate', 'uglify']);
+    grunt.registerTask("updateHtms", ['htmlmin']);
 
 
     grunt.loadNpmTasks('grunt-contrib-jshint');

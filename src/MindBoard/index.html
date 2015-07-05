@@ -1,22 +1,81 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <script src="js/combined.js"></script>
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>Mindboard - Version 1.0</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/css/foundation.min.css">
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-dark.css">
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <style>
+        .messageBox {
+            margin: 10px 20px 10px 10px;
+            padding: 10px;
+            box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+            border-radius: 3px;
+            border: 1px solid #DEDFE9;
+            background: #FFF none repeat scroll 0% 0%;
+        }
+        .messageList {
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+        .input-form {
+            position: fixed;
+            right: 5px;
+            bottom: 5px;
+        }
+    </style>
 </head>
-<body ng-app="MindBoard">
-    <div ng-controller="SampleCtrl">
-        <div style="width:100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <div style="width:800px; padding:20px; background-color:white; margin-top:10px;box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.23), 0px 3px 10px rgba(0, 0, 0, 0.16);" ng-repeat="message in messages">
-                {{message.text}}
+<body ng-app="MindBoard"  ng-controller="SampleCtrl">
+
+    <header>
+        <h1>Mindboard</h1>
+        <p></p>
+    </header>
+
+    <div id="banner">
+        <span id="logo"></span>
+    </div>
+
+<div class="wrapper">
+    <section class="messageList">
+        <div>
+            <div> <!--style="width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;"-->
+                <div class="messageBox" ng-repeat="message in messages | reverse">
+                    {{message.text}}
+                </div>
             </div>
         </div>
-        <!-- push a new message onto the array -->
-        <form ng-submit="addMessage()">
-            <input ng-model="newMessageText" />
-            <button type="submit">Add Message</button>
-        </form>
-    </div>
+    </section>
+    <section class="input-form">
+        <div class="row">
+            <div class="large-12 columns">
+                <form ng-submit="addMessage()">
+                    <label>
+                        Neue Nachricht
+                        <input type="text" ng-model="newMessageText" placeholder="Nachricht...."/>
+                    </label>
+                    <button type="submit" class="button info">Abschicken</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p>Project maintained by <a href="https://github.com/StefanKert">StefanKert</a>
+        </p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small>
+        </p>
+    </footer>
+</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular.min.js"></script>-->
+    <script src="js/combined.js"></script>
+    <script src="javascripts/main.js"></script>
 </body>
 </html>
