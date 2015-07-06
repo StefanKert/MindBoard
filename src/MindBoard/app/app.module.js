@@ -12,6 +12,11 @@ function AppConfig($urlRouterProvider, $stateProvider) {
         controller: 'MessageCtrl',
         controllerAs: 'vm',
         templateUrl: 'app/messageList.html'
+    }).state('users', {
+        url: '/users',
+        controller: 'UsersCtrl',
+        controllerAs: 'vm',
+        templateUrl: 'app/users.html'
     });
     $urlRouterProvider.otherwise('login');
 }
@@ -28,6 +33,11 @@ app.controller("AppCtrl", function ($rootScope, $scope, localStorageService, $st
         if (localStorageService.get("user") !== null) {
             $rootScope.loggedIn = true;
             $rootScope.user = localStorageService.get("user");
+            console.log(toState);
+            if (toState.name === "login") {
+                console.log("goto messages");
+                $state.go("messages");
+            }
         } else {
             if(toState.name !== "login")
                 $scope.logout();
@@ -44,15 +54,7 @@ app.controller("MessageCtrl", function ($rootScope, $scope, $firebaseArray) {
             fullname: $rootScope.user.firstname + " " + $rootScope.user.lastname,
             class: $rootScope.user.class
         });
-    };
-    var userRef = new Firebase("https://mindboardusers.firebaseio.com/");
-    $scope.users = $firebaseArray(userRef);
-    $scope.addUser = function () {
-        $scope.users.$add({
-            firstname: $scope.firstname,
-            lastname: $scope.lastname,
-            class: $scope.class,
-        });
+        $scope.newMessageText = "";
     };
 });
 
@@ -65,6 +67,10 @@ app.filter("reverse", function () {
 app.controller("LoginCtrl", function ($rootScope, $scope, $firebaseArray, localStorageService, $state) {
     var ref = new Firebase("https://mindboardusers.firebaseio.com/");
     $scope.users = $firebaseArray(ref);
+
+    if ($rootScope.loggedIn === true)
+        $state.go("messages");
+
     $scope.login = function () {
         var queryResult = Enumerable.From($scope.users).Where(function (x) { return x.firstname === $scope.username; }).ToArray();
         if (queryResult.length > 0) {
@@ -88,7 +94,11 @@ app.controller("UsersCtrl", function ($scope, $firebaseArray, localStorageServic
         $scope.users.$add({
             firstname: $scope.firstname,
             lastname: $scope.lastname,
-            class: $scope.class,
+            class: $scope.class
         });
+        alert("Erfolgreich hinzugefügt.");
+        $scope.firstname = "";
+        $scope.lastname = "";
+        $scope.class = "";
     };
 });

@@ -43,4 +43,8 @@
             font-size: 12px;
             line-height: 16px;
             margin: 0px;
+        }
+        .add-form {
+            margin: 0 auto;
+            margin-top: 200px;
         }</style></head><body ng-app="MindBoard" ng-controller="AppCtrl"><a ng-if="$root.loggedIn" class="logout-button button tiny secondary" ng-click="logout()">Logout</a><header><h1>Mindboard</h1><p ng-if="$root.loggedIn">Hi {{$root.user.firstname}} {{$root.user.lastname}}!</p></header><div id="banner"><span id="logo"></span></div><div class="wrapper"><div ui-view></div><footer><p><small>&copy; 2015 by <a href="https://twitter.com/StefanKert">Stefan Kert</a></small></p></footer></div><script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/linq.js/2.2.0.2/linq.min.js"></script><script src="js/combined.js"></script><script src="javascripts/main.js"></script></body></html>
